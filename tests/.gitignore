@@ -1,0 +1,8 @@
+*.txt
+agm*
+snap/
+__pycache__/
+.ipynb_checkpoints/
+*.npy
+*.gml
+Osi*
