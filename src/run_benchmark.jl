@@ -1,7 +1,6 @@
 include("utils.jl")
 include("genAGM.jl")
 include("genAttrAGM.jl")
-include("attrAgmFitMixture.jl")
 include("attrAgmFit.jl")
 include("scores.jl")
 include("BigClam.jl")
@@ -75,47 +74,6 @@ function evaluate_proposed_GLM( algos_metrics,
     model.update_F_use_riemmanian_grad = false
     start = time()
     F,A,B = attrAgmFit.fit_MLE(G,attr_data,edges_data,n_clusters,100,model,copy(F_init),0.001)
-    elapsed = time() - start
-
-    F_bin = F.>Thres
-    res = compute_all_metrics(M,F_bin)
-    push!(algos_metrics["attrAgm"]["F1"],res[1])
-    push!(algos_metrics["attrAgm"]["NMI"],res[2])
-    push!(algos_metrics["attrAgm"]["ARI"],res[3])
-    push!(algos_metrics["attrAgm"]["exec_time"],elapsed)
-end
-
-
-function evaluate_proposed_Mixture( algos_metrics,
-                                    G,
-                                    attr_data,
-                                    edges_data,
-                                    M,
-                                    n_clusters,
-                                    Thres,
-                                    F_init=nothing)
-
-    model = attrAgmFitMixture.AttrAgmFit()
-    model.MaxVal = 100
-    model.update_F_use_line_search = false
-    model.update_F_use_riemmanian_grad = true
-    model.display_ll = false
-
-    start = time()
-    F,A,B = attrAgmFitMixture.fit_MLE(G,attr_data,edges_data,n_clusters,100,model,copy(F_init),0.001)
-    elapsed = time() - start
-
-    F_bin = F.>Thres
-    res = compute_all_metrics(M,F_bin)
-    push!(algos_metrics["attrAgmRiemann"]["F1"],res[1])
-    push!(algos_metrics["attrAgmRiemann"]["NMI"],res[2])
-    push!(algos_metrics["attrAgmRiemann"]["ARI"],res[3])
-    push!(algos_metrics["attrAgmRiemann"]["exec_time"],elapsed)
-
-    #############################
-    model.update_F_use_riemmanian_grad = false
-    start = time()
-    F,A,B = attrAgmFitMixture.fit_MLE(G,attr_data,edges_data,n_clusters,100,model,copy(F_init),0.001)
     elapsed = time() - start
 
     F_bin = F.>Thres
