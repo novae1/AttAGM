@@ -1,5 +1,13 @@
 Attributed AGM code
-
+## Running the code:
+you can find plots.ipynb under src directory. Run the bash script "install_snap.sh"
+```bash
+bash install_snap.sh
+``` 
+to generate bigclam runnable before running the python notebook. Make sure to install the requirements need with 
+```bash 
+pip install -r requirements.txt
+``` 
 ## File description
 ### attrAGM.py
 In this file we specify how to generate the benchmark. The graph is constructed in the same way as in
