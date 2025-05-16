@@ -4,7 +4,7 @@ you can find plots.ipynb under src directory. Run the bash script "install_snap.
 ```bash
 bash install_snap.sh
 ``` 
-to generate bigclam runnable before running the python notebook. Make sure to install the requirements need with 
+to generate bigclam runnable before running the python notebook. Make sure to install the requirements needed with 
 ```bash 
 pip install -r requirements.txt
 ``` 
